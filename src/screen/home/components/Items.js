@@ -1,7 +1,7 @@
 import {useNavigationContainerRef} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {COLORS} from '../constants';
+import {COLORS} from '../../../constants';
 
 function Items({item, index, navigation}) {
   // const navigationRef = useNavigationContainerRef()

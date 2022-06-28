@@ -1,14 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import NofiticationIcon from '../assets/images/nofiticationIcon.svg';
-import SearchIcon from '../assets/images/searchIcon.svg';
-import NikeIcon from '../assets/images/nikeIcon.svg';
-import AdidasIcon from '../assets/images/adidasIcon.svg';
-import PumaIcon from '../assets/images/pumaIcon.svg';
-import JordanIcon from '../assets/images/jordanIcon.svg';
-import {COLORS} from '../constants';
+import NofiticationIcon from '../../../assets/images/nofiticationIcon.svg';
+import SearchIcon from '../../../assets/images/searchIcon.svg';
+import {COLORS} from '../../../constants';
 import ListItem from './ListItem';
-import ContentList from './ContentList';
 
 function Home({navigation}) {
   return (

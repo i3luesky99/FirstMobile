@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import SettingIcon from '../assets/images/settingIcon.svg';
-import ArrowIcon from '../assets/images/backArrow.svg';
-import {COLORS, globalStyles} from '../constants';
+import SettingIcon from '../../assets/images/settingIcon.svg';
+import ArrowIcon from '../../assets/images/backArrow.svg';
+import {COLORS, globalStyles} from '../../constants/index';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Carousel, {Pagination} from 'react-native-snap-carousel-v4';
 import {Dimensions} from 'react-native';
-import Circle from '../assets/images/circleIcon.svg';
-import Vector from '../assets/images/vectorIcon.svg';
+import Vector from '../../assets/images/vectorIcon.svg';
 import {
   Menu,
   MenuOption,
@@ -28,10 +27,10 @@ function DetailItem({navigation, route}) {
       source: params.source,
     },
     {
-      source: require('../assets/images/img.png'),
+      source: require('../../assets/images/img.png'),
     },
     {
-      source: require('../assets/images/image.png'),
+      source: require('../../assets/images/image.png'),
     },
   ];
   const [activeSlide, setActiveSlide] = useState(0);
@@ -48,52 +47,50 @@ function DetailItem({navigation, route}) {
 
   return (
     <View style={{flex: 1}}>
+      <View style={[styles.header, globalStyles.rowSpacebeetween]}>
+        <TouchableOpacity
+          // hitSlop={Rect}
+          onPress={() => navigation.goBack()}>
+          <ArrowIcon />
+        </TouchableOpacity>
+        <SettingIcon />
+      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{flex: 1}}>
-          <View style={[styles.header, globalStyles.rowSpacebeetween]}>
-            <TouchableOpacity
-              // hitSlop={Rect}
-              onPress={() => navigation.goBack()}>
-              <ArrowIcon />
-            </TouchableOpacity>
-            <SettingIcon />
+        <View style={{alignItems: 'center'}}>
+          <View style={[styles.images, globalStyles.flexCenter]}>
+            <Carousel
+              layout="default"
+              sliderWidth={350}
+              itemWidth={350}
+              data={images}
+              onSnapToItem={index => setActiveSlide(index)}
+              renderItem={renderItem}
+            />
+            <Pagination
+              dotsLength={images.length}
+              activeDotIndex={activeSlide}
+              animatedDuration={600}
+              dotStyle={styles.dot}
+              inactiveDotStyle={styles.inactiveDot}
+              inactiveDotOpacity={0.9}
+              inactiveDotScale={0.6}
+            />
           </View>
-          <View style={{alignItems: 'center'}}>
-            <View style={[styles.images, globalStyles.flexCenter]}>
-              <Carousel
-                layout="default"
-                sliderWidth={350}
-                itemWidth={350}
-                data={images}
-                onSnapToItem={index => setActiveSlide(index)}
-                renderItem={renderItem}
-              />
-              <Pagination
-                dotsLength={images.length}
-                activeDotIndex={activeSlide}
-                animatedDuration={600}
-                dotStyle={styles.dot}
-                inactiveDotStyle={styles.inactiveDot}
-                inactiveDotOpacity={0.9}
-                inactiveDotScale={0.6}
-              />
-            </View>
-          </View>
-          <View style={styles.bottom}>
-            <Text style={styles.title}>{params.name}</Text>
-            <Text style={styles.price}>${params.price}</Text>
-            <Text style={styles.text}>
-              A pillar of sneaker culture, the Nike Air Max 90 remains one of
-              the most significant designs since the brand’s founding. And while
-              its OG colorways are some of the most significant. A pillar of
-              sneaker culture, the Nike Air Max 90 remains one of the most
-              significant designs since the brand’s founding. And while its OG
-              colorways are some of the most significant. A pillar of sneaker
-              culture, the Nike Air Max 90 remains one of the most significant
-              designs since the brand’s founding. And while its OG colorways are
-              some of the most significant.
-            </Text>
-          </View>
+        </View>
+        <View style={styles.bottom}>
+          <Text style={styles.title}>{params.name}</Text>
+          <Text style={styles.price}>${params.price}</Text>
+          <Text style={styles.text}>
+            A pillar of sneaker culture, the Nike Air Max 90 remains one of the
+            most significant designs since the brand’s founding. And while its
+            OG colorways are some of the most significant. A pillar of sneaker
+            culture, the Nike Air Max 90 remains one of the most significant
+            designs since the brand’s founding. And while its OG colorways are
+            some of the most significant. A pillar of sneaker culture, the Nike
+            Air Max 90 remains one of the most significant designs since the
+            brand’s founding. And while its OG colorways are some of the most
+            significant.
+          </Text>
         </View>
       </ScrollView>
       <View style={styles.bottomNav}>
@@ -143,7 +140,7 @@ function DetailItem({navigation, route}) {
           </View>
         </View>
         {/* <ScrollView > */}
-        <TouchableOpacity style={[styles.buttonAdd,globalStyles.flexCenter]}>
+        <TouchableOpacity style={[styles.buttonAdd, globalStyles.flexCenter]}>
           <Text style={styles.textButtonAdd}>Add to bag</Text>
         </TouchableOpacity>
         {/* </ScrollView> */}
@@ -153,7 +150,7 @@ function DetailItem({navigation, route}) {
 }
 const styles = StyleSheet.create({
   header: {
-    padding: 18
+    padding: 18,
   },
   bottom: {
     marginTop: 14,
@@ -226,7 +223,7 @@ const styles = StyleSheet.create({
     height: 23,
     marginRight: 20,
     borderRadius: 20,
-    borderColor: 'red'
+    borderColor: 'red',
   },
   images: {
     borderRadius: 15,
