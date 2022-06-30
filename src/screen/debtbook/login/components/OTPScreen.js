@@ -13,22 +13,47 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Logo from '../../../../assets/image/svg/logo.svg';
 import {COLORS, globalStyles} from '../../../../constants';
 import formatPhoneNumber from '../../../../utilities/formatPhoneNumber';
+import {t} from '../../../../utilities/globalFuntion';
 
-function OTPScreen() {
+function OTPScreen({navigation}) {
+  var clockCall = null;
   const [phone, setPhone] = useState('');
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
-  const [num1, setNum1] = useState();
-  const [num2, setNum2] = useState();
-  const [num3, setNum3] = useState();
-  const [num4, setNum4] = useState();
+  const [countdown, setCountdown] = useState(30);
+  const [otp, setOtp] = useState('');
+  const auth = '1234';
 
-  const input = [num1, num2, num3, num4];
-  const inputRef = useRef();
-  const onChange = () => {
-    // if (num1 !== 0) num2.current.focus();
+  const handleChangeOTP = otp => {
+    setOtp(otp);
   };
 
+  useEffect(() => {
+    clockCall = setInterval(() => {
+      decrementClock();
+    }, 1000);
+    return () => {
+      clearInterval(clockCall);
+    };
+  });
+
+  const decrementClock = () => {
+    if (countdown === 0) {
+      // setEnableResend(true);
+      setCountdown(0);
+      clearInterval(clockCall);
+    } else {
+      setCountdown(countdown - 1);
+    }
+  };
+
+  const onResendOTP = () => {
+    setCountdown(30);
+  };
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={[styles.img, {width: windowWidth}]}>
@@ -37,30 +62,41 @@ function OTPScreen() {
           source={require('../../../../assets/image/png/Frame.png')}
         />
       </View>
-      <TextInput></TextInput>
       <View
         style={[styles.content, {width: windowWidth, height: windowHeight}]}>
-        <Text style={styles.title}>Nhập mã xác thực</Text>
-        <Text style={styles.text}>
-          Mã xác thực đã được gửi đến số điện thoại
-        </Text>
+        <Text style={styles.title}>{t(`authCode`)}</Text>
+        <Text style={styles.text}>{t(`sendOTPcode`)}</Text>
         <View style={styles.boxPhone}>
           <Text style={styles.phone}>0913123123 </Text>
-          <Text style={styles.text}>của quý khách</Text>
+          <Text style={styles.text}>{t(`customerPhone`)}</Text>
         </View>
         <OTPInput
+          value={otp}
+          autoFocus={true}
+          onChange={handleChangeOTP}
           otpLength={4}
           tintColor={COLORS.green}
           // offTintColor="green"
           keyboardType="numeric"
           cellStyle={styles.otpInput}
         />
+        <Text style={styles.error}>{t(`wrongOTP`)} </Text>
         <View style={[styles.sendOTP, {width: windowWidth}]}>
           <View style={styles.send}>
-            <Text style={styles.resendOTP}>Gữi lại mã sau </Text>
-            <Text style={styles.second}>29s</Text>
+            {countdown === 0 ? (
+              <TouchableOpacity style={styles.reCount} onPress={onResendOTP}>
+                <Text>Gữi lại mã xác thực </Text>
+              </TouchableOpacity>
+            ) : (
+              <>
+                <Text style={styles.resendOTP}>Gữi lại mã sau </Text>
+                <Text style={styles.second}>{countdown}s</Text>
+              </>
+            )}
           </View>
-          <Text style={styles.readdPhone}>Nhập lại số điện thoại</Text>
+          <TouchableOpacity onPress={handleGoBack}>
+            <Text style={styles.readdPhone}>Nhập lại số điện thoại</Text>
+          </TouchableOpacity>
         </View>
         <View style={[styles.bottom, {bottom: windowHeight - 490}]}>
           <Logo />
@@ -134,12 +170,23 @@ const styles = StyleSheet.create({
     color: COLORS.blue,
   },
   sendOTP: {
+    paddingLeft: '10%',
+    paddingRight: '10%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     marginTop: 24,
   },
   resendOTP: {
     marginTop: 3,
+    fontFamily: 'SF Pro Text',
+    fontStyle: 'normal',
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 17,
+    color: COLORS.lightGrey,
+  },
+  reCount: {
+    marginTop: 1,
     fontFamily: 'SF Pro Text',
     fontStyle: 'normal',
     fontSize: 14,
@@ -155,6 +202,15 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     lineHeight: 17,
     color: COLORS.blue,
+  },
+  error: {
+    marginTop: 8,
+    color: COLORS.primaryRed,
+    fontFamily: 'SF Pro Text',
+    fontStyle: 'normal',
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 14,
   },
 });
 export default OTPScreen;

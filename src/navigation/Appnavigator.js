@@ -5,16 +5,19 @@ import {createStackNavigator} from '@react-navigation/stack';
 // import DetailItem from '../screen/detail/index';
 import Login from '../screen/debtbook/login';
 import OTPScreen from '../screen/debtbook/login/components/OTPScreen';
+import Home from '../screen/debtbook/home';
+import BottomNav from '../screen/debtbook/home/components/BottomNav';
 const Stack = createStackNavigator();
 
 function Appnavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Home"
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Login" component={OTPScreen} />
-        {/* <Stack.Screen name="Detail" component={DetailItem} /> */}
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="OTPScreen" component={OTPScreen} />
+        <Stack.Screen name="Home" component={BottomNav} />
       </Stack.Navigator>
     </NavigationContainer>
   );

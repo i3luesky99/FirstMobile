@@ -8,13 +8,21 @@ export const COLORS = {
   greyBase: 'rgba(0, 0, 0, 0.2)',
   whiteLighter: '#F6F6F6',
   trueWhite: '#FFFFFF',
+  whiteLight: '#FEFEFE',
   borderColor: 'rgba(145, 158, 171, 0.32)',
   grey: '#BFBFBF',
   green: '#16884A',
   white: '#FAFAFA',
   black: '#545454',
   blue: '#2464A8',
+  blueLight: '#0C85F2',
   lightGrey: '#7F7F7F',
+  primaryRed: '#9F1E1E',
+  lowGrey: '#DDE1E5',
+  lowestGrey: '#F1F3F5',
+  blackLight: '#606F7D',
+  blackDark: '#30373D',
+  blackGrey: '#8F9BA8',
 };
 
 export const globalStyles = {
@@ -34,6 +42,11 @@ export const globalStyles = {
   },
   rowSpacebeetween: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  rowSpaceevenly: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
 };

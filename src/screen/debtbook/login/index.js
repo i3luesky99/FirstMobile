@@ -1,11 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
-import LoginPage from './components/LoginScreen';
+import LoginScreen from './components/LoginScreen';
 
-function Login() {
+function Login({navigation}) {
   return (
     <View>
-      <LoginPage />
+      <LoginScreen navigation={navigation} />
     </View>
   );
 }

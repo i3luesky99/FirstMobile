@@ -7,17 +7,23 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  SafeAreaView,
 } from 'react-native';
 import Logo from '../../../../assets/image/svg/logo.svg';
 import {COLORS, globalStyles} from '../../../../constants';
 import formatPhoneNumber from '../../../../utilities/formatPhoneNumber';
 import i18n from '../../../../assets/string/i18n';
+import {t} from '../../../../utilities/globalFuntion';
 
-function LoginScreen() {
+function LoginScreen({navigation}) {
   const [phone, setPhone] = useState('');
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
-  const {t} = i18n;
+
+  const handleContinue = () => {
+    navigation.navigate('OTPScreen');
+  };
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={[styles.img, {width: windowWidth}]}>
@@ -39,16 +45,24 @@ function LoginScreen() {
           onChangeText={setPhone}
           value={formatPhoneNumber(phone)}
         />
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              backgroundColor: phone ? COLORS.green : COLORS.grey,
-              shadowColor: phone ? 'green' : 'grey',
-            },
-          ]}>
-          <Text style={styles.text}>{t(`continue`)}</Text>
-        </TouchableOpacity>
+        {phone ? (
+          <TouchableOpacity
+            style={[
+              styles.button,
+              {
+                backgroundColor: COLORS.green,
+                shadowColor: 'green',
+              },
+            ]}
+            onPress={handleContinue}>
+            <Text style={styles.text}>{t(`continue`)}</Text>
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.button}>
+            <Text style={styles.text}>{t(`continue`)}</Text>
+          </View>
+        )}
+
         <TouchableOpacity>
           <Text style={styles.skipText}>{t(`skip`)}</Text>
         </TouchableOpacity>
@@ -104,6 +118,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
     width: 319,
     height: 48,
+    backgroundColor: COLORS.grey,
     borderRadius: 8,
     shadowOffset: {
       width: 0,
