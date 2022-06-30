@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     marginLeft: 10,
-    marginBottom:20
+    marginBottom:15
   },
 });
 export default ListItem;

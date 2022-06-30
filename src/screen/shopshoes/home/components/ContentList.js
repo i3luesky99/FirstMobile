@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../../../constants';
-import ListItem from './ListItem';
 import NikeIcon from '../../../assets/images/nikeIcon.svg';
 import AdidasIcon from '../../../assets/images/adidasIcon.svg';
 import PumaIcon from '../../../assets/images/pumaIcon.svg';

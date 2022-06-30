@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import SettingIcon from '../../assets/images/settingIcon.svg';
 import ArrowIcon from '../../assets/images/backArrow.svg';
-import {COLORS, globalStyles} from '../../constants/index';
+import {COLORS, globalStyles} from '../../../constants/index';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Carousel, {Pagination} from 'react-native-snap-carousel-v4';
 import {Dimensions} from 'react-native';
