@@ -3,6 +3,7 @@ export const COLORS = {
   primaryGrey: '#EEEEEE',
   primaryWhite: '#D6D6D6',
   primaryDark: '#2A2A2A',
+  darkBlack: '#161C24',
   greyLighter: 'rgba(0, 0, 0, 0.4)',
   greyDarker: 'rgba(0, 0, 0, 0.6)',
   greyBase: 'rgba(0, 0, 0, 0.2)',
@@ -23,6 +24,11 @@ export const COLORS = {
   blackLight: '#606F7D',
   blackDark: '#30373D',
   blackGrey: '#8F9BA8',
+  greenLighter: '#00A64C',
+  greyIcon: '#8F9BA8',
+  red: '#F23030',
+  greyLight: '#637381',
+  redLight: '#E5420E',
 };
 
 export const globalStyles = {
@@ -49,4 +55,9 @@ export const globalStyles = {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
+};
+
+export const hitSlop = {
+  top: 10,
+  right: 20,
 };

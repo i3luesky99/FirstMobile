@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS, globalStyles} from '../../../../constants';
 import CreateOrder from '../../../../assets/image/svg/createOrder.svg';
 import Order from '../../../../assets/image/svg/order.svg';
@@ -10,7 +10,7 @@ import Gift from '../../../../assets/image/svg/gift.svg';
 import Customer from '../../../../assets/image/svg/customer.svg';
 import Difference from '../../../../assets/image/svg/difference.svg';
 
-function Content() {
+function Content({navigation}) {
   const vector = [
     {
       id: 1,
@@ -53,13 +53,20 @@ function Content() {
       title: 'Khác',
     },
   ];
+  const onOpenList = index => {
+    if(index === 3){
+      navigation.navigate('ListItems')
+    }
+  };
   return (
     <View style={styles.container}>
       {vector.map((value, index) => (
-        <View key={value.id} style={styles.vector}>
-          {value.icon}
-          <Text>{value.title}</Text>
-        </View>
+        <TouchableOpacity key={value.id} onPress={() => onOpenList(index)}>
+          <View style={styles.vector}>
+            {value.icon}
+            <Text>{value.title}</Text>
+          </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

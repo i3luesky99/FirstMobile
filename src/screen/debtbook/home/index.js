@@ -8,8 +8,11 @@ import Vector from '../../../assets/image/svg/vector.svg';
 import Overview from './components/Overview';
 import Content from './components/Content';
 import FloatingButton from './components/FloatingButton';
+import {useSelector, useDispatch} from 'react-redux';
 
-function Home() {
+function Home({navigation}) {
+  const items = useSelector(state => state.items);
+  console.log(items);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -32,8 +35,8 @@ function Home() {
         </View>
       </View>
       <Overview />
-      <Content />
-      <FloatingButton />
+      <Content navigation={navigation} />
+      <FloatingButton navigation={navigation} />
     </SafeAreaView>
   );
 }

@@ -7,17 +7,21 @@ import Login from '../screen/debtbook/login';
 import OTPScreen from '../screen/debtbook/login/components/OTPScreen';
 import Home from '../screen/debtbook/home';
 import BottomNav from '../screen/debtbook/home/components/BottomNav';
+import CreatItem from '../screen/debtbook/home/components/CreatItem';
+import ListItems from '../screen/debtbook/home/components/ListItems';
 const Stack = createStackNavigator();
 
 function Appnavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Login"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="OTPScreen" component={OTPScreen} />
         <Stack.Screen name="Home" component={BottomNav} />
+        <Stack.Screen name="Create" component={CreatItem} />
+        <Stack.Screen name="ListItems" component={ListItems} />
       </Stack.Navigator>
     </NavigationContainer>
   );

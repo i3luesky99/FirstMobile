@@ -6,6 +6,7 @@ function Love() {
   const counter = useSelector(state => state.counter);
   const dispatch = useDispatch();
   console.log(counter);
+  
   const onIncrease = () => {
     dispatch({type: 'INCREASE'});
   };
